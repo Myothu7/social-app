@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'mmt@example.com',
         // ])
         $feel_data = ['happy', 'lovely', 'loved', 'excited', 'crazy', 'cool', 'relaxed', 'chill'];
-        Post::factory()->count(10)->create();
+        // Post::factory()->count(10)->create();
 
         foreach($feel_data as $val){
             Feeling::create([

@@ -14,11 +14,10 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('feeling_id');
-            $table->unsignedBigInteger('comment_id');
-            $table->string('title');
+            $table->unsignedBigInteger('feeling_id')->nullable(true);
             $table->text('content');
             $table->string('photo')->nullable(true);
+            $table->string('status');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

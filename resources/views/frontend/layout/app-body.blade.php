@@ -851,7 +851,7 @@
             </div>
           </div>
           <!-- create post -->
-          <form action="{{ route('posts.store')}}" method="post">
+          <form action="{{ route('posts.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="bg-white p-3 mt-3 rounded border shadow">
               <!-- avatar -->
@@ -887,17 +887,17 @@
                             </div>
                             <div>
                               <p class="m-0 fw-bold">{{Auth::user()->name}}</p>
-                              <select class="form-select border-0 bg-gray w-75 fs-7" aria-label="Default select example">
-                                <option selected value="1">Public</option>
-                                <option value="2">Pin To Top</option>
-                                <option value="3">Hide</option>
+                              <select class="form-select border-0 bg-gray w-75 fs-7" aria-label="Default select example" name="status">
+                                <option selected value="public">Public</option>
+                                <option value="private">Private</option>
+                                <option value="only me">Only me</option>
                               </select>
                             </div>
                           </div>
                           <!-- text -->
                           <div>
                             {{-- <input type="text" > --}}
-                            <input type="hidden" name="user_id" value="0">
+                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                             <input type="hidden" name="feeling_id" value="0">
                             <textarea cols="30" rows="6" class="form-control border-0" name="content"></textarea>
                             <input type="file" class="form-control mt-2 border-0" name="photo">

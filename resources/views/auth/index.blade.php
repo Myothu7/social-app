@@ -11,26 +11,26 @@
     <link rel="stylesheet" href="{{url('dist/main.css')}}" />
     <title>Flexbook</title>
   </head>
-  <body class="bg-gray">
+  <body class="bg-gray position-relative">
+    <div class="row m-0 position-absolute top-0 end-0">
+      @if (session('msg'))
+          <div class="d-flex flex-row-reverse p-0 mt-1" style="margin-right:20px">
+              <div class="alert alert-success alert-dismissible fade show " role="alert">
+                  {{session('msg')}}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+          </div>
+      @endif
+    </div>
     <!-- Login -->
-    <div class="container mt-5 pt-5 d-flex flex-column flex-lg-row justify-content-evenly">
+    <div class="container pt-5 d-flex flex-column flex-lg-row justify-content-evenly">
       <!-- heading -->
       <div class="text-center text-lg-start mt-0 pt-0 mt-lg-5 pt-lg-5">
         <h1 class="text-primary fw-bold fs-0">flexbook</h1>
         <p class="w-75 mx-auto fs-4 mx-lg-0">Flexbook helps you connect and share with the people in your life.</p>
       </div>
       <!-- form card -->
-      <div style="max-width: 28rem; width: 100%">
-        <div class="row">
-            @if (session('msg'))
-                <div class="d-flex flex-row-reverse p-0">
-                    <div class="alert alert-success alert-dismissible fade show " role="alert">
-                        {{session('msg')}}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                </div>
-            @endif
-        </div>
+      <div style="max-width: 28rem; width: 100%" class="mt-5">
         <!-- login form -->
         <!-- first was form tag -->
         <div class="bg-white shadow rounded p-3 input-group-lg">

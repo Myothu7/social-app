@@ -12,7 +12,7 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id','feeling_id', 'title', 'content', 'photo'
+        'user_id','feeling_id', 'content', 'photo','status'
     ];
 
     protected $hidden = ['created_at','updated_at'];
@@ -26,4 +26,5 @@ class Post extends Model
     {
         return $this->belongsTo(Feeling::class);
     }
+   
 }

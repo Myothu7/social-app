@@ -1,6 +1,5 @@
 @extends('frontend.layout.app')
 @section('post')
-{{Auth::user()->name}}
 @foreach ($posts as $post)
     <div class="bg-white p-4 rounded shadow mt-3">
         <!-- author -->
@@ -45,20 +44,22 @@
                 Edit Post</a
               >
             </li>
-            <li class="d-flex align-items-center">
-              <a
-                class="
-                  dropdown-item
-                  d-flex
-                  justify-content-around
-                  align-items-center
-                  fs-7
-                "
-                href="#"
-              >
-                Delete Post</a
-              >
-            </li>
+            @if (Auth::user()->id === $post->id)
+              <li class="d-flex align-items-center">
+                <a
+                  class="
+                    dropdown-item
+                    d-flex
+                    justify-content-around
+                    align-items-center
+                    fs-7
+                  "
+                  href="#"
+                >
+                  Delete Post</a
+                >
+              </li>
+            @endif
           </ul>
         </div>
         <!-- post content -->
@@ -70,12 +71,12 @@
             </p>
             @if($post->photo)
                 <img
-                src="{{$post->photo}}"
+                src="{{asset('storage/'.$post->photo)}}"
                 alt="post image"
                 class="img-fluid rounded"
                 />
             @endif
-           
+            
           </div>
           <!-- likes & comments -->
           <div class="post__comment mt-3 position-relative">
@@ -98,7 +99,7 @@
               <p class="m-0 text-muted fs-7">Phu, Tuan, and 3 others</p>
             </div>
             <!-- comments start-->
-            <div class="accordion" id="accordionExample">
+            <div class="accordion" id="accordionExample{{$post->id}}">
               <div class="accordion-item border-0">
                 <!-- comment collapse -->
                 <h2 class="accordion-header" id="headingTwo">
@@ -161,7 +162,7 @@
                   id="collapsePost1"
                   class="accordion-collapse collapse"
                   aria-labelledby="headingTwo"
-                  data-bs-parent="#accordionExample"
+                  data-bs-parent="#accordionExample{{$post->id}}"
                 >
                   <hr />
                   <div class="accordion-body">
