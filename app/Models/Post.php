@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Feeling;
+use App\Models\Like;
 
 class Post extends Model
 {
@@ -16,7 +17,7 @@ class Post extends Model
     ];
 
     protected $hidden = ['created_at','updated_at'];
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -26,5 +27,10 @@ class Post extends Model
     {
         return $this->belongsTo(Feeling::class);
     }
-   
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
 }

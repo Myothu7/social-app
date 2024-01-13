@@ -1,6 +1,8 @@
 @extends('frontend.layout.app')
 @section('post')
+
 @foreach ($posts as $post)
+
     <div class="bg-white p-4 rounded shadow mt-3">
         <!-- author -->
         <div class="d-flex justify-content-between">
@@ -13,6 +15,7 @@
               style="width: 38px; height: 38px; object-fit: cover"
             />
             <div>
+                {{-- <p class="d-none" id="user-id{{ $post->id }}">{{ $post->user_id }}</p> --}}
                 <p class="m-0 fw-bold">{{ $post->user->name }}</p>
                 <span class="text-muted fs-7">{{ $post->created_at->format('d-m-Y')}}</span>
             </div>
@@ -69,14 +72,15 @@
             <p>
               {{$post->content}}
             </p>
-            @if($post->photo)
-                <img
-                src="{{asset('storage/'.$post->photo)}}"
-                alt="post image"
-                class="img-fluid rounded"
-                />
-            @endif
-            
+            <div class="text-center">
+                @if($post->photo)
+                    <img
+                    src="{{asset('storage/'.$post->photo)}}"
+                    alt="post image"
+                    class="img-fluid rounded"
+                    />
+                @endif
+            </div>
           </div>
           <!-- likes & comments -->
           <div class="post__comment mt-3 position-relative">
@@ -93,10 +97,10 @@
             >
               <div class="me-2">
                 <i class="text-primary fas fa-thumbs-up"></i>
-                <i class="text-danger fab fa-gratipay"></i>
-                <i class="text-warning fas fa-grin-squint"></i>
+                {{-- <i class="text-danger fab fa-gratipay"></i>
+                <i class="text-warning fas fa-grin-squint"></i> --}}
               </div>
-              <p class="m-0 text-muted fs-7">Phu, Tuan, and 3 others</p>
+              <p class="m-0 fs-7" id="like-count{{ $post->id }}">{{ $post->likes->count()?:'' }}</p>
             </div>
             <!-- comments start-->
             <div class="accordion" id="accordionExample{{$post->id}}">
@@ -121,49 +125,33 @@
                 </h2>
                 <hr />
                 <!-- comment & like bar -->
-                <div class="d-flex justify-content-around">
-                  <div
-                    class="
-                      dropdown-item
-                      rounded
-                      d-flex
-                      justify-content-center
-                      align-items-center
-                      pointer
-                      text-muted
-                      p-1
-                    "
-                  >
-                    <i class="fas fa-thumbs-up me-3"></i>
-                    <p class="m-0">Like</p>
-                  </div>
-                  <div
-                    class="
-                      dropdown-item
-                      rounded
-                      d-flex
-                      justify-content-center
-                      align-items-center
-                      pointer
-                      text-muted
-                      p-1
-                    "
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapsePost1"
-                    aria-expanded="false"
-                    aria-controls="collapsePost1"
-                  >
+                <div >
+
+                <form action="" class="d-flex justify-content-around">
+                    <div class="dropdown-item rounded d-flex justify-content-center align-items-center
+                        pointer
+                        text-muted p-1" id="likeForm" onclick="checkLike({{ $post->id }}, {{ Auth::user()->id }})">
+                         {{-- @if ($post->likes->count() == 0) --}}
+                        <input type="hidden" value="0" id="like{{ $post->id }}">
+                        <i class="far fa-thumbs-up me-3" id="like-icon{{ $post->id }}"></i>
+                        <p class="m-0" id="like-text{{ $post->id }}">Like</p>
+                         {{-- @else
+                        @foreach ($post->likes as $like)
+                            <input type="hidden" value="{{ $like->user_id == Auth::user()->id ? 1 : 0 }}" id="like{{ $post->id }}">
+                            <i class="far fa-thumbs-up me-3 {{ $like->user_id == Auth::user()->id ? 'text-primary' :'' }}" id="like-icon{{ $post->id }}"></i>
+                            <p class="m-0 {{ $like->user_id == Auth::user()->id ? 'text-primary' :'' }}" id="like-text{{ $post->id }}">Like</p>
+                         @endforeach
+                         @endif --}}
+
+                    </div>
+                  <div class="dropdown-item rounded d-flex justify-content-center align-items-center pointer text-muted p-1" data-bs-toggle="collapse" data-bs-target="#collapsePost1" aria-expanded="false" aria-controls="collapsePost1">
                     <i class="fas fa-comment-alt me-3"></i>
                     <p class="m-0">Comment</p>
                   </div>
                 </div>
+
                 <!-- comment expand -->
-                <div
-                  id="collapsePost1"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="headingTwo"
-                  data-bs-parent="#accordionExample{{$post->id}}"
-                >
+                <div id="collapsePost1" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample{{$post->id}}">
                   <hr />
                   <div class="accordion-body">
                     <!-- comment 1 -->
@@ -285,5 +273,6 @@
           </div>
         </div>
       </div>
-@endforeach      
+@endforeach
+{{-- @endforeach --}}
 @endsection
