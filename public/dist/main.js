@@ -1,3 +1,11 @@
+
+// var myForm = document.getElementById('createComment');
+var myForm = document.forms['createComment'];
+myForm.addEventListener("submit",function(event) {
+event.preventDefault();
+console.log(myForm['name'].value);
+});
+
 // popover
 var popoverTriggerList = [].slice.call(
     document.querySelectorAll('[data-bs-toggle="popover"]')
@@ -78,4 +86,45 @@ function checkLike(id, user_id) {
 
         storeLike(id, user_id);
     }
+}
+
+// let showComment = ($id) => {
+//     axios.get('http://127.0.0.1:8000/api/comment/'+$id)
+//          .then((res)=>{
+//             console.log(res.data);
+//          });
+// }
+let check = document.getElementById('check');
+
+async function showComment($id) { 
+    let displayComment = document.getElementById('displayComment');
+    if(check.value == 0){
+        let res = await axios.get('http://127.0.0.1:8000/api/comment/'+$id);
+        // console.log('comment',res.data.data);
+        for(val in res.data.data){
+            displayComment.innerHTML += 
+            `<div class="mb-2">
+            <p class="m-0 fs-7 fw-bolder">Myo Thu</p>
+            <p class="m-0 fs-7 bg-gray p-2 rounded">
+             ${res.data.data[val].name}
+            </p>
+            </div>
+            `;
+    }
+    }
+    check.value = 1;
+   
+}
+
+async function storeComment(name, post_id, user_id) {
+    data = {
+        'name' : name,
+        'post_id' : post_id,
+        'user_id' : user_id,
+    }
+
+    let res = await axios.post("http://127.0.0.1:8000/api/comment", data);
+
+    console.log(res.data);
+          
 }
