@@ -8,12 +8,8 @@
         <div class="d-flex justify-content-between">
           <!-- avatar -->
           <div class="d-flex">
-            <img
-              src="https://source.unsplash.com/collection/happy-people"
-              alt="avatar"
-              class="rounded-circle me-2"
-              style="width: 38px; height: 38px; object-fit: cover"
-            />
+            <img src="https://source.unsplash.com/collection/happy-people" alt="avatar" class="rounded-circle me-2"
+              style="width: 38px; height: 38px; object-fit: cover"/>
             <div>
                 {{-- <p class="d-none" id="user-id{{ $post->id }}">{{ $post->user_id }}</p> --}}
                 <p class="m-0 fw-bold">{{ $post->user->name }}</p>
@@ -21,46 +17,17 @@
             </div>
           </div>
           <!-- edit -->
-          <i
-            class="fas fa-ellipsis-h"
-            type="button"
-            id="post1Menu"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          ></i>
+          <i class="fas fa-ellipsis-h" type="button" id="post1Menu" data-bs-toggle="dropdown" aria-expanded="false"></i>
           <!-- edit menu -->
-          <ul
-            class="dropdown-menu border-0 shadow"
-            aria-labelledby="post1Menu"
-          >
+          <ul class="dropdown-menu border-0 shadow" aria-labelledby="post1Menu">
             <li class="d-flex align-items-center">
-              <a
-                class="
-                  dropdown-item
-                  d-flex
-                  justify-content-around
-                  align-items-center
-                  fs-7
-                "
-                href="#"
-              >
-                Edit Post</a
-              >
+              <a class="dropdown-item d-flex justify-content-around align-items-center fs-7"
+                href="#">Edit Post</a>
             </li>
             @if (Auth::user()->id === $post->id)
               <li class="d-flex align-items-center">
-                <a
-                  class="
-                    dropdown-item
-                    d-flex
-                    justify-content-around
-                    align-items-center
-                    fs-7
-                  "
-                  href="#"
-                >
-                  Delete Post</a
-                >
+                <a class="dropdown-item d-flex justify-content-around align-items-center fs-7"
+                  href="#">Delete Post</a>
               </li>
             @endif
           </ul>
@@ -74,27 +41,14 @@
             </p>
             <div class="text-center">
                 @if($post->photo)
-                    <img
-                    src="{{asset('storage/'.$post->photo)}}"
-                    alt="post image"
-                    class="img-fluid rounded"
-                    />
+                    <img src="{{asset('storage/'.$post->photo)}}" alt="post image" class="img-fluid rounded"/>
                 @endif
             </div>
           </div>
           <!-- likes & comments -->
           <div class="post__comment mt-3 position-relative">
             <!-- likes -->
-            <div
-              class="
-                d-flex
-                align-items-center
-                top-0
-                start-0
-                position-absolute
-              "
-              style="height: 50px; z-index: 5"
-            >
+            <div class="d-flex align-items-center top-0 start-0 position-absolute" style="height: 50px; z-index: 5">
               <div class="me-2">
                 <i class="text-primary fas fa-thumbs-up"></i>
                 {{-- <i class="text-danger fab fa-gratipay"></i>
@@ -109,8 +63,8 @@
                 <h2 class="accordion-header" id="headingTwo">
                   <div class="accordion-button collapsed pointer d-flex justify-content-end"
                     data-bs-toggle="collapse" data-bs-target="#collapsePost{{$post->id}}"
-                    aria-expanded="false" aria-controls="collapsePost{{$post->id}}" onclick="showComment({{$post->id}})">
-                    <p class="m-0">2 Comments</p>
+                    aria-expanded="false" aria-controls="collapsePost{{$post->id}}">
+                    <p class="m-0"><span class="me-1">{{ $post->comments->count() }}</span>{{ $post->comments->count() == 1? 'comment' : 'comments' }} </p>
                   </div>
                 </h2>
                 <hr />
@@ -146,7 +100,7 @@
                   <div class="accordion-body">
                     <!-- comment 1 -->
                     <div class="d-flex align-items-center my-1">
-                     
+
                       <!-- comment text -->
                       <div class="p-3 rounded comment__input w-100 mb-4" id="cardDisplayComment">
                         <!-- comment menu of author -->
@@ -160,39 +114,41 @@
                           ></i>
                         </div>
                         {{-- display with api comments --}}
-                        <div id="displayComment">
-                            <input type="hidden" id="check" value="0">
+                        <div id="displayComment{{ $post->id }}">
+                            {{-- <input type="hidden" id="check{{ $post->id }}" value="0"> --}}
+                            @foreach ($post->comments as $comment)
+                                <div class="mb-2">
+                                    <p class="m-0 fs-7 fw-bolder">{{ $comment->user->name }}</p>
+                                    <p class="m-0 fs-7 bg-gray p-2 rounded">
+                                        {{ $comment->name }}
+                                    </p>
+                                </div>
+                            @endforeach
                         </div>
                       </div>
                     </div>
-                    
+                    <form action=""></form>
                     <!-- create comment -->
-                    <form id="createComment" class="d-flex">
+                    <form action="" id="storeComment" name="storeComment">
                       <!-- avatar -->
                       <div class="d-flex">
-                        <img
-                          src="https://source.unsplash.com/collection/happy-people"
-                          alt="avatar"
-                          class="rounded-circle me-2"
-                          style="
-                            width: 38px;
-                            height: 38px;
-                            object-fit: cover;
-                          "
-                        />
+                        <img src="https://source.unsplash.com/collection/happy-people" alt="avatar"
+                          class="rounded-circle me-2" style="width: 38px; height: 38px;object-fit: cover;"/>
+                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="post_id" value="{{ $post->id }}">
                         <div class="input-group mb-3">
                           <input type="text" name="name" class="form-control border-0 rounded-pill bg-gray" placeholder="Write a comment" aria-label="Username" aria-describedby="basic-addon1"/>
-                        
+
                           <span class="input-group-text" id="basic-addon1">
-                            <button class="m-0 p-0 border-0 border-0 rounded-pill bg-gray"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                            <button class="m-0 p-0 border-0 border-0 rounded-pill bg-gray" onsubmit="myForm({{ $post->id }})">
+                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                            </button>
                           </span>
                           {{-- <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"> --}}
                         </div>
-                       
-
                       </div>
                       <!-- input -->
-                    
+
                     </form>
                     <!-- end -->
                   </div>

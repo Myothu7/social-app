@@ -14,15 +14,16 @@ class CommentController extends Controller
         if($comment) {
             return response()->json([
                 'success' => true,
-                'msg' => 'Create Successfully!'
+                'msg' => 'Create Successfully!',
+                'data' => $comment
             ]);
         }
     }
 
     public function show($id)
     {
-        $comment = Comment::with('user')->where('post_id', '=', 1)->get();
-      
+        $comment = Comment::with('user')->where('post_id', '=', $id)->get();
+
         if($comment) {
             return response()->json([
                 'success' => true,

@@ -5,8 +5,8 @@ crossorigin="anonymous"
 ></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="{{asset('dist/main.js')}}"></script>
-
-
+<script src="{{ asset('dist/like/main.js') }}"></script>
+<script src="{{ asset('dist/comment/main.js') }}"></script>
 
 </body>
 </html>

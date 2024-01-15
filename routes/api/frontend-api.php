@@ -13,4 +13,5 @@ Route::post('like', [LikeController::class, 'store']);
 Route::post('like/del', [LikeController::class, 'destory']);
 
 Route::get('comment/{id}', [CommentController::class, 'show']);
+Route::post('comment', [CommentController::class, 'store']);
 ?>
