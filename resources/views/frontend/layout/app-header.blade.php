@@ -1,4 +1,4 @@
-<body class="bg-gray postion-relative">
+<body class="bg-gray postion-relative" onload="checkLike">
     <!-- ================= Appbar ================= -->
     <div class="bg-white d-flex align-items-center fixed-top shadow" style="min-height: 56px; z-index: 5">
       <div class="container-fluid">
@@ -90,14 +90,7 @@
                 </li>
                 <!-- search 2 -->
                 <li class="my-4">
-                  <div
-                    class="
-                      alert
-                      fade
-                      show
-                      dropdown-item
-                      p-1
-                      m-0
+                  <div class="alert fade show dropdown-item p-1 m-0
                       d-flex
                       align-items-center
                       justify-content-between

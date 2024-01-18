@@ -18,7 +18,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->get();
         $feelings = Feeling::all();
         return view('frontend.post.index', compact('posts', 'feelings'));
 

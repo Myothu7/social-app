@@ -50,11 +50,13 @@
             <!-- likes -->
             <div class="d-flex align-items-center top-0 start-0 position-absolute" style="height: 50px; z-index: 5">
               <div class="me-2">
+               {{-- @if ($post->likes->count()) --}}
                 <i class="text-primary fas fa-thumbs-up"></i>
+               {{-- @endif --}}
                 {{-- <i class="text-danger fab fa-gratipay"></i>
                 <i class="text-warning fas fa-grin-squint"></i> --}}
               </div>
-              <p class="m-0 fs-7" id="like-count{{ $post->id }}">{{ $post->likes->count()?:'' }}</p>
+              <p class="m-0 fs-7" id="like-count{{ $post->id }}">{{$post->likes->count()?:'' }}</p>
             </div>
             <!-- comments start-->
             <div class="accordion" id="accordionExample">
@@ -72,13 +74,15 @@
                 <div >
 
                 <form action="" class="d-flex justify-content-around">
+                    {{-- {{ $post->authlike(Auth::user()->id, $post->id)}} --}}
                     <div class="dropdown-item rounded d-flex justify-content-center align-items-center
                         pointer
                         text-muted p-1" id="likeForm" onclick="checkLike({{ $post->id }}, {{ Auth::user()->id }})">
                          {{-- @if ($post->likes->count() == 0) --}}
-                        <input type="hidden" value="0" id="like{{ $post->id }}">
-                        <i class="far fa-thumbs-up me-3" id="like-icon{{ $post->id }}"></i>
-                        <p class="m-0" id="like-text{{ $post->id }}">Like</p>
+                        <input type="hidden" value="{{ $post->authlike(Auth::user()->id, $post->id)?'1':'0' }}" id="like{{ $post->id }}">
+                        <i class="far fa-thumbs-up me-3 {{ $post->authlike(Auth::user()->id, $post->id)? 'text-primary':'' }}" id="like-icon{{ $post->id }}" style="font-size: 22px;"></i>
+                        <p class="m-0 {{ $post->authlike(Auth::user()->id, $post->id)? 'text-primary':'' }}" id="like-text{{ $post->id }}">Like</p>
+                        <input type="hidden" value="{{ $post->likes }}" id="like{{ $post->id }}">
                          {{-- @else
                         @foreach ($post->likes as $like)
                             <input type="hidden" value="{{ $like->user_id == Auth::user()->id ? 1 : 0 }}" id="like{{ $post->id }}">
@@ -88,7 +92,7 @@
                          @endif --}}
 
                     </div>
-                  <div class="dropdown-item rounded d-flex justify-content-center align-items-center pointer text-muted p-1" data-bs-toggle="collapse" data-bs-target="#collapsePost{{$post->id}}" aria-expanded="false" aria-controls="collapsePost{{$post->id}}" onclick="showComment({{$post->id}})">
+                  <div class="dropdown-item rounded d-flex justify-content-center align-items-center pointer text-muted p-1" data-bs-toggle="collapse" data-bs-target="#collapsePost{{$post->id}}" aria-expanded="false" aria-controls="collapsePost{{$post->id}}">
                     <i class="fas fa-comment-alt me-3"></i>
                     <p class="m-0">Comment</p>
                   </div>
@@ -103,16 +107,7 @@
 
                       <!-- comment text -->
                       <div class="p-3 rounded comment__input w-100 mb-4" id="cardDisplayComment">
-                        <!-- comment menu of author -->
-                        <div class="d-flex justify-content-end">
-                          <!-- icon -->
-                          <i
-                            class="fas fa-ellipsis-h text-blue pointer"
-                            id="post1CommentMenuButton"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                          ></i>
-                        </div>
+
                         {{-- display with api comments --}}
                         <div id="displayComment{{ $post->id }}">
                             {{-- <input type="hidden" id="check{{ $post->id }}" value="0"> --}}
@@ -128,22 +123,28 @@
                       </div>
                     </div>
                     <form action=""></form>
+                    {{-- <div></div> --}}
                     <!-- create comment -->
-                    <form action="" id="storeComment" name="storeComment">
+                    <form action="" id="commentForm{{ $post->id }}" name="commentForm{{ $post->id }}">
                       <!-- avatar -->
                       <div class="d-flex">
                         <img src="https://source.unsplash.com/collection/happy-people" alt="avatar"
                           class="rounded-circle me-2" style="width: 38px; height: 38px;object-fit: cover;"/>
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                        <input type="hidden" name="user_name" value="{{ Auth::user()->name }}">
+                        {{-- <input type="hidden" name="post_id" value="{{ $post->id }}"> --}}
                         <div class="input-group mb-3">
-                          <input type="text" name="name" class="form-control border-0 rounded-pill bg-gray" placeholder="Write a comment" aria-label="Username" aria-describedby="basic-addon1"/>
+                          <input type="text" name="name" class="form-control " placeholder="Write a comment" aria-label="Username" aria-describedby="basic-addon1"
+                          onchange="chColor({{ $post->id }})"/>
 
-                          <span class="input-group-text" id="basic-addon1">
-                            <button class="m-0 p-0 border-0 border-0 rounded-pill bg-gray" onsubmit="myForm({{ $post->id }})">
+                          {{-- <span class="input-group-text" id="basic-addon1"> --}}
+                            <span class="input-group-text border-0" onclick="store({{ $post->id }})">
+                                <i class="fa fa-paper-plane" aria-hidden="true" id="commentBut{{ $post->id }}"></i>
+                            </span>
+                            {{-- <button class="input-group-text" onsubmit="myForm({{ $post->id }})"  id="basic-addon1">
                                 <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                            </button>
-                          </span>
+                            </button> --}}
+                          {{-- </span> --}}
                           {{-- <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"> --}}
                         </div>
                       </div>

@@ -34,6 +34,18 @@ class Post extends Model
         return $this->hasMany(Like::class);
     }
 
+    public function authlike($auth_id, $post_id)
+    {
+        $like = Like::where('user_id','=', $auth_id)
+                     ->where('post_id', '=', $post_id)->get();
+
+        if($like) {
+            return count($like);
+        }
+
+        return false;
+    }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
