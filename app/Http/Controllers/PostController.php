@@ -44,9 +44,11 @@ class PostController extends Controller
 
     }
 
-    public function show(string $id)
+    public function posts()
     {
-        //
+        $user_id = auth()->user()->id;
+        $posts = Post::where('user_id', $user_id)->get();
+        return view('frontend.profile.index', compact('posts'));
     }
 
     public function update(Request $request, string $id)

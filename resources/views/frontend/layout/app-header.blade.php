@@ -6,7 +6,7 @@
           <!-- search -->
           <div class="col d-flex align-items-center">
             <!-- logo -->
-            <i class="fab fa-facebook text-primary" style="font-size: 3rem"></i>
+            <a href="{{route('posts')}}"><i class="fab fa-facebook text-primary" style="font-size: 3rem"></i></a>
             <!-- search bar -->
             <div class="input-group ms-2" type="button">
               <!-- mobile -->
@@ -155,7 +155,7 @@
             <!-- home -->
             <div class="mx-4 nav__btn nav__btn-active">
               <button type="button" class="btn px-4">
-                <i class="fas fa-home text-muted fs-4"></i>
+                <a href="{{route('posts')}}"><i class="fas fa-home text-muted fs-4"></i></a>
               </button>
             </div>
             <!-- market -->
@@ -1481,8 +1481,8 @@
                   style="width: 45px; height: 45px; object-fit: cover"
                 />
                 <div>
-                  <p class="m-0">{{Auth::user()->name}}</p>
-                  <p class="m-0 text-muted">See your profile</p>
+                  <p class="m-0 ">{{auth()->user()->name}}</p>
+                  <a href="{{route('profile')}}" class="m-0 text-muted text-decoration-none">See your profile</a>
                 </div>
               </li>
               <hr />

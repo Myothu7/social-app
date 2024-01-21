@@ -21,17 +21,15 @@
                   text-decoration-none text-dark
                 "
               >
-                <div class="p-2">
+                <div class="p-2 d-flex align-items-center">
                   <img
                     src="https://source.unsplash.com/collection/happy-people"
                     alt="avatar"
                     class="rounded-circle me-2"
-                    style="width: 38px; height: 38px; object-fit: cover"
-                  />
+                    style="width: 38px; height: 38px; object-fit: cover"/>
+                    <a href="{{route('profile')}}" class="m-0 text-decoration-none text-dark">{{auth()->user()->name}}</a>
                 </div>
-                <div>
-                  <p class="m-0">John</p>
-                </div>
+                  
               </a>
             </li>
             <!-- top 1 -->
@@ -859,7 +857,7 @@
                 <div class="p-1">
                   <img src="https://source.unsplash.com/collection/happy-people" alt="avatar" class="rounded-circle me-2" style="width: 38px; height: 38px; object-fit: cover"/>
                 </div>
-                <input type="text" class="form-control rounded-pill border-0 bg-gray pointer" placeholder="What's on your mind, John?" data-bs-toggle="modal" data-bs-target="#createModal"/>
+                <input type="text" class="form-control rounded-pill border-0 bg-gray pointer" placeholder="What's on your mind ?" data-bs-toggle="modal" data-bs-target="#createModal"/>
               </div>
               <!-- create modal -->
               <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true" data-bs-backdrop="false">
