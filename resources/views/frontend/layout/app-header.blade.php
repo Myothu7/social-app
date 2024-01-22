@@ -198,18 +198,7 @@
           </div>
           <!-- menus -->
           <div class="col d-flex align-items-center justify-content-end">
-            <!-- avatar -->
-            <div
-              class="align-items-center justify-content-center d-none d-xl-flex"
-            >
-              <img
-                src="https://source.unsplash.com/collection/happy-people"
-                class="rounded-circle me-2"
-                alt="avatar"
-                style="width: 38px; height: 38px; object-fit: cover"
-              />
-              <p class="m-0">{{Auth::user()->name}}</p>
-            </div>
+
             <!-- main menu -->
             <div
               class="
@@ -1446,26 +1435,22 @@
                 </a>
               </li>
             </ul>
-            <!-- secondary menu -->
-            <div
-              class="
-                rounded-circle
-                p-1
-                bg-gray
-                d-flex
-                align-items-center
-                justify-content-center
-                mx-2
-              "
-              style="width: 38px; height: 38px"
-              type="button"
-              id="secondMenu"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              data-bs-auto-close="outside"
-            >
-              <i class="fas fa-caret-down"></i>
-            </div>
+
+             <!-- avatar -->
+             <div
+             class="align-items-center justify-content-center d-none d-xl-flex" id="secondMenu"
+             data-bs-toggle="dropdown"
+             aria-expanded="false"
+             data-bs-auto-close="outside"
+           >
+             <img
+               src="https://source.unsplash.com/collection/happy-people"
+               class="rounded-circle me-2"
+               alt="avatar"
+               style="width: 38px; height: 38px; object-fit: cover"
+             />
+             {{-- <p class="m-0">{{Auth::user()->name}}</p> --}}
+           </div>
             <!-- secondary menu dd -->
             <ul
               class="dropdown-menu border-0 shadow p-3"
@@ -1485,6 +1470,7 @@
                   <a href="{{route('profile')}}" class="m-0 text-muted text-decoration-none">See your profile</a>
                 </div>
               </li>
+
               <hr />
               <!-- feedback -->
               <li

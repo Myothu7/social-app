@@ -2,10 +2,10 @@
  <div class="container-fluid">
     <div class="row justify-content-evenly">
       <!-- ================= Sidebar ================= -->
-      <div class="col-12 col-lg-3">
+      <div class="col-12 col-lg-3 col-md-3">
         <div
-          class="d-none d-xxl-block h-100 fixed-top overflow-hidden scrollbar"
-          style="max-width: 360px; width: 100%; z-index: 4">
+          class="d-none d-xxl-block d-xl-block h-100 fixed-top overflow-hidden scrollbar"
+          style="max-width: 320px; width: 100%; z-index: 4">
           <ul
             class="navbar-nav mt-4 ms-3 d-flex flex-column pb-5 mb-5"
             style="padding-top: 56px"
@@ -29,142 +29,44 @@
                     style="width: 38px; height: 38px; object-fit: cover"/>
                     <a href="{{route('profile')}}" class="m-0 text-decoration-none text-dark">{{auth()->user()->name}}</a>
                 </div>
-                  
+
               </a>
             </li>
+
             <!-- top 1 -->
-            <li class="dropdown-item p-1 rounded">
-              <a
-                href="#"
-                class="
-                  d-flex
-                  align-items-center
-                  text-decoration-none text-dark
-                "
-              >
-                <div class="p-2">
-                  <img
-                    src="https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/tSXYIzZlfrS.png"
-                    alt="from fb"
-                    class="rounded-circle"
-                    style="width: 38px; height: 38px; object-fit: cover"
-                  />
-                </div>
-                <div>
-                  <p class="m-0">Friends</p>
-                </div>
-              </a>
+            <li class="dropdown-item p-1">
+                <div class="d-flex align-items-center p-2">
+                    <i class="fas fa-user-friends fs-5 me-2 ms-1 text-primary"></i>
+                    <p class="m-0">Friends</p>
+                  <div>
             </li>
             <!-- top 2 -->
-            <li class="dropdown-item p-1 rounded">
-              <a
-                href="#"
-                class="
-                  d-flex
-                  align-items-center
-                  text-decoration-none text-dark
-                "
-              >
-                <div class="p-2">
-                  <img
-                    src="https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/Im_0d7HFH4n.png"
-                    alt="from fb"
-                    class="rounded-circle"
-                    style="width: 38px; height: 38px; object-fit: cover"
-                  />
-                </div>
-                <div>
-                  <p class="m-0">Groups</p>
-                  <i
-                    class="fas fa-circle text-primary"
-                    style="font-size: 0.5rem !important"
-                  ></i>
-                  <span class="fs-7 text-primary"> 1 new</span>
-                </div>
-              </a>
+            <li class="dropdown-item p-1">
+                <div class="d-flex align-items-center p-2">
+                    <i class="fas fa-users fs-5 me-2 ms-1 text-primary"></i>
+                    <p class="m-0">Groups</p>
+                  <div>
             </li>
             <!-- top 3 -->
             <li class="dropdown-item p-1">
-              <a
-                href="#"
-                class="
-                  d-flex
-                  align-items-center
-                  justify-content-between
-                  text-decoration-none text-dark
-                "
-              >
-                <div class="d-flex align-items-center justify-content-evenly">
-                  <div class="p-2">
-                    <img
-                      src="https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/0gH3vbvr8Ee.png"
-                      alt="from fb"
-                      class="rounded-circle"
-                      style="width: 38px; height: 38px; object-fit: cover"
-                    />
-                  </div>
+                <div class="d-flex align-items-center p-2">
+                    <i class="fas fa-bookmark fs-5 me-2 ms-1 text-info"></i>
+                    <p class="m-0">Saves</p>
                   <div>
-                    <p class="m-0">Pages</p>
-                  </div>
-                </div>
-              </a>
             </li>
             <!-- top 4 -->
             <li class="dropdown-item p-1">
-              <a
-                href="#"
-                class="
-                  d-flex
-                  align-items-center
-                  justify-content-between
-                  text-decoration-none text-dark
-                "
-              >
-                <div class="d-flex align-items-center justify-content-evenly">
-                  <div class="p-2">
-                    <img
-                      src="https://static.xx.fbcdn.net/rsrc.php/v3/y4/r/MN44Sm-CTHN.png"
-                      alt="from fb"
-                      class="rounded-circle"
-                      style="width: 38px; height: 38px; object-fit: cover"
-                    />
-                  </div>
+                <div class="d-flex align-items-center p-2">
+                    <i class="fas fa-video fs-5 me-2 ms-1 text-primary"></i>
+                    <p class="m-0">Video</p>
                   <div>
-                    <p class="m-0">Marketplace</p>
-                  </div>
-                </div>
-              </a>
             </li>
             <!-- top 5 -->
             <li class="dropdown-item p-1">
-              <a
-                href="#"
-                class="
-                  d-flex
-                  align-items-center
-                  justify-content-between
-                  text-decoration-none text-dark
-                "
-              >
-                <div class="d-flex align-items-center justify-content-evenly">
-                  <div class="p-2">
-                    <img
-                      src="https://static.xx.fbcdn.net/rsrc.php/v3/y-/r/FhOLTyUFKwf.png"
-                      alt="from fb"
-                      class="rounded-circle"
-                      style="width: 38px; height: 38px; object-fit: cover"
-                    />
-                  </div>
+                <div class="d-flex align-items-center p-2">
+                    <i class="fas fa-pager fs-5 me-2 ms-1 text-primary"></i>
+                    <p class="m-0">Page</p>
                   <div>
-                    <p class="m-0">Watch</p>
-                    <i
-                      class="fas fa-circle text-primary"
-                      style="font-size: 0.5rem !important"
-                    ></i>
-                    <span class="fs-7 text-primary"> 9+ new videos</span>
-                  </div>
-                </div>
-              </a>
             </li>
             <!-- see more -->
             <li class="p-1" type="button">
@@ -713,10 +615,10 @@
         </div>
       </div>
       <!-- ================= Timeline ================= -->
-      <div class="col-12 col-lg-6 pb-5">
+      <div class="col-12 col-lg-6 pb-5 col-md-6">
         <div
           class="d-flex flex-column justify-content-center w-100 mx-auto"
-          style="padding-top: 56px; max-width: 680px"
+          style="padding-top: 56px; max-width: 500px;"
         >
           <!-- stories -->
           <div class="mt-5 d-flex justify-content-between position-relative">
@@ -860,7 +762,7 @@
                 <input type="text" class="form-control rounded-pill border-0 bg-gray pointer" placeholder="What's on your mind ?" data-bs-toggle="modal" data-bs-target="#createModal"/>
               </div>
               <!-- create modal -->
-              <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true" data-bs-backdrop="false">
+              <div class="modal fade mt-4" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true" data-bs-backdrop="false">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <!-- head -->
@@ -872,7 +774,7 @@
                     </div>
                     <!-- body -->
                     <div class="modal-body">
-                      <div class="my-1 p-1">
+                      <div class="my-1 p-1"> 
                         <div class="d-flex flex-column">
                           <!-- name -->
                           <div class="d-flex align-items-center">
@@ -881,11 +783,11 @@
                                 src="https://source.unsplash.com/collection/happy-people"
                                 alt="from fb"
                                 class="rounded-circle"
-                                style="width: 38px; height: 38px; object-fit: cover;/>
+                                style="width: 38px; height: 38px; object-fit: cover";/>
                             </div>
                             <div>
                               <p class="m-0 fw-bold">{{Auth::user()->name}}</p>
-                              <select class="form-select border-0 bg-gray w-75 fs-7" aria-label="Default select example" name="status">
+                              <select class="form-select border-0 bg-gray w-75 fs-7 rounded ouline-delete" aria-label="Default select example" name="status">
                                 <option selected value="public">Public</option>
                                 <option value="private">Private</option>
                                 <option value="only me">Only me</option>
@@ -893,12 +795,20 @@
                             </div>
                           </div>
                           <!-- text -->
-                          <div>
+                          <div id="post">
                             {{-- <input type="text" > --}}
                             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                             <input type="hidden" name="feeling_id" value="0">
-                            <textarea cols="30" rows="6" class="form-control border-0" name="content"></textarea>
-                            <input type="file" class="form-control mt-2 border-0" name="photo">
+                            <textarea cols="30" rows="4" class="form-control border-0 ouline-delete" name="content" autofocus></textarea>
+                            <div id="image-conatiner" class="position-relative">
+                                <img id="imagePreview" class="form-control" 
+                                src="">
+                                <div class="position-absolute top-0 start-100 translate-middle badge rounded-pill" id="close"
+                                onclick="cleanFile()">
+                                    <i class="fas fa-times fs-4 text-danger"></i>
+                                </div>
+                            </div>  
+                            <input type="file" class="form-control mt-2 border-0 d-none" name="photo" id="postFile" onchange="handleFile()">
                           </div>
                           <!-- emoji  -->
                           <div
@@ -910,7 +820,7 @@
                           <div class="d-flex justify-content-between border border-1 border-light rounded p-3 mt-3">
                             <p class="m-0">Add to your post</p>
                             <div>
-                              <i class="fas fa-images fs-5 text-success pointer mx-1"></i>
+                              <i class="fas fa-images fs-5 text-success pointer mx-1" onclick="openPostFile()"></i>
                               <i class="fas fa-user-check fs-5 text-primary pointer mx-1"></i>
                               <i class="far fa-smile fs-5 text-warning pointer mx-1"></i>
                               <i class="fas fa-map-marker-alt fs-5 text-info pointer mx-1"></i>
@@ -980,18 +890,18 @@
               </div>
             </div>
           </form>
-         
+
           <!-- post one -->
           @yield('post')
           <!-- p 1 -->
-         
+
         </div>
       </div>
       <!-- ================= Chatbar ================= -->
-      <div class="col-12 col-lg-3">
+      <div class="col-12 col-lg-3 col-md-3">
         <div
           class="
-            d-none d-xxl-block
+            d-none d-xxl-block d-xl-block
             h-100
             fixed-top
             end-0
@@ -999,7 +909,7 @@
             scrollbar
           "
           style="
-            max-width: 360px;
+            max-width: 320px;
             width: 100%;
             z-index: 4;
             padding-top: 56px;
@@ -2407,4 +2317,3 @@
   >
     <i class="fas fa-edit bg-white rounded-circle p-3 shadow"></i>
   </div>
-  

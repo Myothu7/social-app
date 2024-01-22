@@ -7,6 +7,7 @@ crossorigin="anonymous"
 <script src="{{asset('dist/main.js')}}"></script>
 <script src="{{ asset('dist/like/main.js') }}"></script>
 <script src="{{ asset('dist/comment/main.js') }}"></script>
+<script src="{{ asset('dist/profile/main.js') }}"></script>
 
 </body>
 </html>

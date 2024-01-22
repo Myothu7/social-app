@@ -20,5 +20,6 @@
     />
     <!-- main style -->
     <link rel="stylesheet" href="{{asset('dist/main.css')}}" />
+    <link rel="stylesheet" href="{{asset('dist/profile/main.css')}}" />
     <title>Flexbook</title>
   </head>

@@ -1,0 +1,21 @@
+.form-control:focus {
+    box-shadow: none;
+}
+
+#image-conatiner {
+    max-height: 240px;
+    /* border: 2px solid red; */
+}
+
+#imagePreview {
+    height: 240px;
+    /* border: 2px solid green; */
+    object-fit: cover;
+    display: none;
+}
+#close {
+    display: none;
+}
+#close:hover {
+    cursor: pointer;
+}
