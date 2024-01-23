@@ -1,5 +1,5 @@
 <div class="container" style="width:50%">
-@foreach ($posts as $post)
+@foreach ($data[0]->posts as $post)
 <div class="bg-white p-4 rounded shadow mt-3">
     <!-- author -->
     <div class="d-flex justify-content-between">

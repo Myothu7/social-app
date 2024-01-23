@@ -6,12 +6,25 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Media;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function media(Request $request)
+    {
+        $media = new Media();
+        if($request->hasFile('profile_photo')) {
+            $media->profile_photo = $request->file('profile_photo')->store('profile_images','public');
+        }else{
+            $media->cover_photo = $request->file('cover_photo')->store('profile_images','public');
+        }
+        $media->user_id = $request->auth_id;
+        $media->save();
+
+        return response()->json(['msg'=>'Success']);
+    }
+
     public function index()
     {
         $user = UserResource::collection(User::all());
@@ -23,7 +36,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**

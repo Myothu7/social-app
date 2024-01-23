@@ -1,21 +1,56 @@
 @extends('frontend.layout.header')
 
 @extends('frontend.layout.app-header')
+
     <div class="container" style="width: 80%">
         <div style="height:500px; width:100%" class="position-relative">
             <img src="https://scontent.frgn4-1.fna.fbcdn.net/v/t39.30808-6/415390294_2150013018678503_1243922193069856091_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=783fdb&_nc_ohc=dNoc3GBis5kAX8FLYPv&_nc_ht=scontent.frgn4-1.fna&oh=00_AfANcYD2QURBS0aXhw_BUVsnXPtxGeiC0Wv8oUht_lWJiA&oe=65AFB1D9"
-            class="img-fluid rounded w-100 h-100 position-absolute" alt="..." style="object-fit: cover; ">
-        
+            class="img-fluid rounded w-100 h-100 position-absolute" alt="..." style="object-fit: cover; " id="profile_photo1">
+
                 <div class="" >
                     <div class="edit-cover position-absolute bottom-0 end-0 border py-1 px-2 bg-white rounded d-flex align-items-center mb-2 me-4"
                     id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-camera-retro fs-6"></i>
                         <span class="ms-2"> Edit Cover Photo</span>
                     </div>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"> 
-                        <input type="file" id="fileInput1" onchange="showChosenFile(1)" class="d-none">
+                    {{-- <form action="{{ route('media.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf --}}
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                         <input type="hidden" value="{{ auth()->user()->id }}" id="auth_id">
+                        <input type="file" id="fileInput1" onchange="uploadFile(1)" class="d-none">
                         <li>
                             <button class="dropdown-item" type="button" id="customButton1" onclick="openFileInput(1)">
+                                <i class="fas fa-upload me-1"></i>
+                                Upload Photo
+                            </button>
+                        </li>
+                    {{-- </form> --}}
+                        <li>
+                            <button class="dropdown-item" type="button">
+                                <i class="fas fa-trash me-1"></i>
+                                Remove
+                            </button>
+                        </li>
+                        <li><button class="dropdown-item" type="button">Something else here</button></li>
+                    </ul>
+                </div>
+
+
+
+            <div class="position-absolute top-100 translate-middle rounded-circle p-1 bg-white" style="height:180px; width:180px; margin-left:130px;">
+                {{-- <div class="border border-danger position-relative rounded-circle"> --}}
+                    <div class="rounded-circle position-relative" style="object-fit: cover; max-width:180px; max-height:180px; overflow:inherit">
+                        <img src="https://scontent.frgn4-1.fna.fbcdn.net/v/t39.30808-6/418518778_2158174291195709_4058299702883875368_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=K56HDxhdxgMAX8VwMBk&_nc_ht=scontent.frgn4-1.fna&oh=00_AfALCEkiqunDw6ZOq8DoGhU7Xd9gTLBMAgvLhkBY5Tz_yQ&oe=65B0B66F"
+                        class="img-fluid rounded-circle" alt="..." id="profile_photo2" style="object-fit: cover">
+                    </div>
+                    <span class="position-absolute bottom-0 end-0 translate-middle p-2 bg-secondary rounded-circle edit-cover"
+                    id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-camera fs-6 text-white"></i>
+                    </span>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                        <input type="file" id="fileInput2" class="d-none" onchange="uploadFile(2)">
+                        <li>
+                            <button class="dropdown-item" type="button" id="customButton2" onclick="openFileInput(2)">
                                 <i class="fas fa-upload me-1"></i>
                                 Upload Photo
                             </button>
@@ -26,37 +61,8 @@
                                 Remove
                             </button>
                         </li>
-                        <li><button class="dropdown-item" type="button">Something else here</button></li>
+                        {{-- <li><button class="dropdown-item" type="button">Something else here</button></li> --}}
                     </ul>
-                </div>
-                
-               
-            <div class="position-absolute top-100 translate-middle rounded-circle p-1 bg-white" style="height:180px; width:180px; object-fit: cover; margin-left:130px; ">
-                {{-- <div class="border border-danger position-relative rounded-circle"> --}}
-                    <div class="w-100 h-100 rounded-circle position-relative">
-                        <img src="https://scontent.frgn4-1.fna.fbcdn.net/v/t39.30808-6/418518778_2158174291195709_4058299702883875368_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=K56HDxhdxgMAX8VwMBk&_nc_ht=scontent.frgn4-1.fna&oh=00_AfALCEkiqunDw6ZOq8DoGhU7Xd9gTLBMAgvLhkBY5Tz_yQ&oe=65B0B66F"
-                        class="img-fluid rounded-circle" alt="..." >
-                        <span class="position-absolute bottom-0 end-0 translate-middle p-2 bg-secondary rounded-circle edit-cover" 
-                        id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-camera fs-6 text-white"></i>
-                        </span>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2"> 
-                            <input type="file" id="fileInput2" onchange="showChosenFile(2)" class="d-none">
-                            <li>
-                                <button class="dropdown-item" type="button" id="customButton2" onclick="openFileInput(2)">
-                                    <i class="fas fa-upload me-1"></i>
-                                    Upload Photo
-                                </button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item" type="button">
-                                    <i class="fas fa-trash me-1"></i>
-                                    Remove
-                                </button>
-                            </li>
-                            <li><button class="dropdown-item" type="button">Something else here</button></li>
-                        </ul>
-                    </div>
                 {{-- </div> --}}
             </div>
             <div class="position-absolute top-100 translate-middle" style="padding-top: 70px; margin-left:330px;">

@@ -19,3 +19,7 @@
 #close:hover {
     cursor: pointer;
 }
+img#profile_photo2 {
+    width: 100%;
+    height: 100%;
+}
