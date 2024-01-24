@@ -1,4 +1,22 @@
 @extends('frontend.layout.app')
+@section('header-cover-photo')
+            <!-- avatar -->
+    <div class="align-items-center justify-content-center d-none d-xl-flex" id="secondMenu" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+        <img src="{{ $media[0] ? asset('storage/'. $media[0]->cover_photo) : 'https://rb.gy/nizq7p' }}"
+        class="rounded-circle me-2" alt="avatar" style="width: 38px; height: 38px; object-fit: cover"/>
+    </div>
+    <!-- secondary menu dd -->
+    <ul class="dropdown-menu border-0 shadow p-3" aria-labelledby="secondMenu" style="width: 23em">
+        <!-- avatar -->
+        <li class="dropdown-item p-1 rounded d-flex" type="button">
+        <img src="{{ $media[0] ? asset('storage/'. $media[0]->cover_photo) : 'https://rb.gy/nizq7p' }}" alt="avatar"
+            class="rounded-circle me-2" style="width: 45px; height: 45px; object-fit: cover"/>
+        <div>
+            <p class="m-0 ">{{auth()->user()->name}}</p>
+            <a href="{{route('profile')}}" class="m-0 text-muted text-decoration-none">See your profile</a>
+        </div>
+        </li>
+@endsection
 @section('post')
 
 @foreach ($posts as $post)

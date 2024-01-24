@@ -13,16 +13,22 @@ class UserController extends Controller
 {
     public function media(Request $request)
     {
-        $media = new Media();
         if($request->hasFile('profile_photo')) {
-            $media->profile_photo = $request->file('profile_photo')->store('profile_images','public');
+            $data['profile_photo'] = $request->file('profile_photo')->store('profile_images','public');
         }else{
-            $media->cover_photo = $request->file('cover_photo')->store('profile_images','public');
+            $data['cover_photo'] = $request->file('cover_photo')->store('profile_images','public');
         }
-        $media->user_id = $request->auth_id;
-        $media->save();
+        $data['user_id'] =  $request->auth_id;
 
-        return response()->json(['msg'=>'Success']);
+        $media = Media::where('user_id',$request->auth_id);
+
+        if(count($media->get())) {
+            $media->update($data);
+        }else{
+            Media::create($data);
+        }
+
+        return response()->json(['msg'=>$data]);
     }
 
     public function index()

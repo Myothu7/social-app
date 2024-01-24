@@ -23,8 +23,8 @@
               >
                 <div class="p-2 d-flex align-items-center">
                   <img
-                    src="https://source.unsplash.com/collection/happy-people"
-                    alt="avatar"
+                  src="{{ $media[0] ? asset('storage/'. $media[0]->cover_photo) : 'https://rb.gy/nizq7p' }}"
+                  alt="avatar"
                     class="rounded-circle me-2"
                     style="width: 38px; height: 38px; object-fit: cover"/>
                     <a href="{{route('profile')}}" class="m-0 text-decoration-none text-dark">{{auth()->user()->name}}</a>
@@ -774,7 +774,7 @@
                     </div>
                     <!-- body -->
                     <div class="modal-body">
-                      <div class="my-1 p-1"> 
+                      <div class="my-1 p-1">
                         <div class="d-flex flex-column">
                           <!-- name -->
                           <div class="d-flex align-items-center">
@@ -801,13 +801,13 @@
                             <input type="hidden" name="feeling_id" value="0">
                             <textarea cols="30" rows="4" class="form-control border-0 ouline-delete" name="content" autofocus></textarea>
                             <div id="image-conatiner" class="position-relative">
-                                <img id="imagePreview" class="form-control" 
+                                <img id="imagePreview" class="form-control"
                                 src="">
                                 <div class="position-absolute top-0 start-100 translate-middle badge rounded-pill" id="close"
                                 onclick="cleanFile()">
                                     <i class="fas fa-times fs-4 text-danger"></i>
                                 </div>
-                            </div>  
+                            </div>
                             <input type="file" class="form-control mt-2 border-0 d-none" name="photo" id="postFile" onchange="handleFile()">
                           </div>
                           <!-- emoji  -->

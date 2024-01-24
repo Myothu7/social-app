@@ -9,5 +9,6 @@ class Media extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['cover_photo', 'profile_photo', 'user_id'];
     protected $hidden = ['created_at', 'updated_at'];
 }

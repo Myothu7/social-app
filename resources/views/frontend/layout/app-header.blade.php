@@ -1,4 +1,5 @@
 <body class="bg-gray postion-relative" onload="checkLike">
+    {{-- {{ dd($data['media']['id']) }} --}}
     <!-- ================= Appbar ================= -->
     <div class="bg-white d-flex align-items-center fixed-top shadow" style="min-height: 56px; z-index: 5">
       <div class="container-fluid">
@@ -1436,40 +1437,23 @@
               </li>
             </ul>
 
-             <!-- avatar -->
-             <div
-             class="align-items-center justify-content-center d-none d-xl-flex" id="secondMenu"
-             data-bs-toggle="dropdown"
-             aria-expanded="false"
-             data-bs-auto-close="outside"
-           >
-             <img
-               src="https://source.unsplash.com/collection/happy-people"
-               class="rounded-circle me-2"
-               alt="avatar"
-               style="width: 38px; height: 38px; object-fit: cover"
-             />
-             {{-- <p class="m-0">{{Auth::user()->name}}</p> --}}
-           </div>
+            @yield('header-cover-photo')
+             {{-- <!-- avatar -->
+            <div class="align-items-center justify-content-center d-none d-xl-flex" id="secondMenu" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                <img src="{{ $data[0]->media ? asset('storage/'. $data[0]->media->cover_photo) : 'https://rb.gy/nizq7p' }}"
+                class="rounded-circle me-2" alt="avatar" style="width: 38px; height: 38px; object-fit: cover"/>
+            </div>
             <!-- secondary menu dd -->
-            <ul
-              class="dropdown-menu border-0 shadow p-3"
-              aria-labelledby="secondMenu"
-              style="width: 23em"
-            >
+            <ul class="dropdown-menu border-0 shadow p-3" aria-labelledby="secondMenu" style="width: 23em">
               <!-- avatar -->
               <li class="dropdown-item p-1 rounded d-flex" type="button">
-                <img
-                  src="https://source.unsplash.com/collection/happy-people"
-                  alt="avatar"
-                  class="rounded-circle me-2"
-                  style="width: 45px; height: 45px; object-fit: cover"
-                />
+                <img src="{{ $data[0]->media ? asset('storage/'. $data[0]->media->cover_photo) : 'https://rb.gy/nizq7p' }}" alt="avatar"
+                  class="rounded-circle me-2" style="width: 45px; height: 45px; object-fit: cover"/>
                 <div>
                   <p class="m-0 ">{{auth()->user()->name}}</p>
                   <a href="{{route('profile')}}" class="m-0 text-muted text-decoration-none">See your profile</a>
                 </div>
-              </li>
+              </li> --}}
 
               <hr />
               <!-- feedback -->
@@ -1812,6 +1796,32 @@
                 </ul>
               </li>
               <!-- 3 -->
+              <li class="dropdown-item p-1 my-3 rounded" type="button">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <div class="d-flex" data-bs-toggle="dropdown">
+                      <i class="fas fa-moon bg-gray p-2 rounded-circle"></i>
+                      <div
+                        class="
+                          ms-3
+                          d-flex
+                          justify-content-between
+                          align-items-center
+                          w-100
+                        "
+                      >
+                        <p class="m-0">
+                            <form action="{{route('logout')}}" method="post">
+                                @csrf
+                                <input type="submit" class="text-decoration-none text-dark border-0" value="Log out">
+                            </form>
+                        </p>
+                      </div>
+                      <a href=""></a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
               <li class="dropdown-item p-1 my-3 rounded" type="button">
                 <ul class="navbar-nav">
                   <li class="nav-item">

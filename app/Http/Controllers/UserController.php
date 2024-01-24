@@ -9,14 +9,16 @@ class UserController extends Controller
 {
     public function media(Request $request)
     {
-        $media = new Media();
+        dd('dd');
+        $data = [];
         if($request->hasFile('profile_photo')) {
-            $media->profile_photo = $request->file('profile_photo')->store('profile_images','public');
+            $data['profile_photo'] = $request->file('profile_photo')->store('profile_images','public');
         }else{
-            $media->profile_photo = $request->file('profile_photo')->store('profile_images','public');
+            $data['cover_photo'] = $request->file('cover_photo')->store('profile_images','public');
         }
 
-        $media->save();
+        return $data;
+        // $media->save();
 
         return redirect()->route('profile');
 

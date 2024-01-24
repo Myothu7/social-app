@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use PDO;
 use App\Http\Resources\TestCollection;
 use App\Models\Feeling;
+use App\Models\Media;
 use Illuminate\Support\Benchmark;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,9 +19,11 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->get();
+
         $feelings = Feeling::all();
-        return view('frontend.post.index', compact('posts', 'feelings'));
+        $posts = Post::orderBy('id', 'desc')->get();
+        $media = Media::where('user_id', auth()->user()->id)->get();
+        return view('frontend.post.index', compact('feelings', 'posts', 'media'));
 
     }
 
@@ -50,9 +53,6 @@ class PostController extends Controller
                       ->where('id', auth()->user()->id)
                       ->get();
         // return $data;
-        // return $data[0]->media;
-        // $posts = Post::where('user_id', auth()->user()->id)
-        //                -> get();
         return view('frontend.profile.index', compact('data'));
     }
 

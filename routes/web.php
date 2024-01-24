@@ -19,7 +19,6 @@ Route::middleware('auth')->group(function(){
         Route::post('posts', 'store')->name('posts.store');
         Route::get('profile','posts')->name('profile'); // This route for user profile and user posts
     });
-
 });
 
 ?>
